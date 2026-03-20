@@ -1,0 +1,40 @@
+{
+  "id": "arkantya",
+  "title": "Arkantya",
+  "description": "Jeu de rôle Arkantya (Ezechiel Din Cyr / Wankil) pour Foundry VTT — attributs 6–18, compétences 0–4, test en 1d20 ≤ seuil, Destin 1d6, jetons Blessure / Fatigue / Surmenage.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Conversion Foundry",
+      "flags": {}
+    }
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "esmodules": ["arkantya.mjs"],
+  "styles": ["css/arkantya.css"],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "grid": {
+    "distance": 1,
+    "units": "m"
+  },
+  "primaryTokenAttribute": "system.trackers.blessure",
+  "secondaryTokenAttribute": "system.trackers.fatigue",
+  "socket": false,
+  "manifest": "",
+  "download": "",
+  "protected": false
+}

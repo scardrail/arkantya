@@ -1,0 +1,605 @@
+/* Arkantya — fiches Foundry v13 */
+
+.arkantya.sheet.actor {
+  --ak-bg: #1a1510;
+  --ak-panel: #2a231c;
+  --ak-border: #5c4a32;
+  --ak-accent: #c9a227;
+  --ak-text: #e8dcc8;
+  --ak-muted: #9a8b78;
+  --ak-success: #4a9d6e;
+  --ak-fail: #c44c4c;
+  /* Texte saisi / libellés de boutons (contraste sur fond sombre) */
+  --ak-input-text: #f5f2eb;
+  --ak-btn-text: #f5f2eb;
+}
+
+.arkantya.sheet.actor .window-content {
+  background: var(--ak-bg);
+  color: var(--ak-text);
+  overflow-y: auto;
+}
+
+.arkantya.sheet.actor form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+/* Champs & boutons : texte clair (surcharge Foundry / WebKit / autofill) */
+form.arkantya.sheet.actor input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]),
+form.arkantya.sheet.actor textarea,
+form.arkantya.sheet.actor select {
+  color: var(--ak-input-text) !important;
+  -webkit-text-fill-color: var(--ak-input-text);
+  caret-color: var(--ak-input-text);
+}
+
+form.arkantya.sheet.actor input::placeholder,
+form.arkantya.sheet.actor textarea::placeholder {
+  color: var(--ak-muted) !important;
+  -webkit-text-fill-color: var(--ak-muted);
+  opacity: 1;
+}
+
+form.arkantya.sheet.actor input:-webkit-autofill,
+form.arkantya.sheet.actor input:-webkit-autofill:hover,
+form.arkantya.sheet.actor input:-webkit-autofill:focus,
+form.arkantya.sheet.actor textarea:-webkit-autofill,
+form.arkantya.sheet.actor textarea:-webkit-autofill:hover,
+form.arkantya.sheet.actor textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ak-input-text) !important;
+  caret-color: var(--ak-input-text);
+  box-shadow: 0 0 0 1000px var(--ak-bg) inset !important;
+  transition: background-color 99999s ease-out;
+}
+
+form.arkantya.sheet.actor select option {
+  background-color: var(--ak-panel);
+  color: var(--ak-input-text);
+}
+
+form.arkantya.sheet.actor button {
+  color: var(--ak-btn-text) !important;
+  -webkit-text-fill-color: var(--ak-btn-text);
+}
+
+form.arkantya.sheet.actor button.btn-roll:hover {
+  color: var(--ak-bg) !important;
+  -webkit-text-fill-color: var(--ak-bg);
+}
+
+form.arkantya.sheet.actor button.btn-icon {
+  color: var(--ak-text) !important;
+  -webkit-text-fill-color: var(--ak-text);
+}
+
+form.arkantya.sheet.actor button.btn-icon:hover {
+  color: var(--ak-fail) !important;
+  -webkit-text-fill-color: var(--ak-fail);
+}
+
+/* Boutons « génériques » (Ajouter, Destin, etc.) : fond lisible */
+form.arkantya.sheet.actor button:not(.btn-roll):not(.btn-icon) {
+  background: var(--ak-panel);
+  border: 1px solid var(--ak-border);
+  border-radius: 4px;
+  padding: 0.28rem 0.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+form.arkantya.sheet.actor button:not(.btn-roll):not(.btn-icon):hover {
+  border-color: var(--ak-accent);
+  color: var(--ak-accent) !important;
+  -webkit-text-fill-color: var(--ak-accent);
+}
+
+form.arkantya.sheet.actor .tracker-inputs span {
+  color: var(--ak-text);
+}
+
+.arkantya .sheet-header {
+  display: flex;
+  gap: 0.75rem;
+  align-items: stretch;
+  padding: 0.5rem;
+  background: var(--ak-panel);
+  border: 1px solid var(--ak-border);
+  border-radius: 4px;
+}
+
+.arkantya .sheet-header img.profile {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border: 2px solid var(--ak-border);
+  border-radius: 4px;
+}
+
+.arkantya .header-fields {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem 0.75rem;
+}
+
+.arkantya .header-fields label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ak-muted);
+}
+
+.arkantya .header-fields input {
+  background: var(--ak-bg);
+  border: 1px solid var(--ak-border);
+  color: var(--ak-text);
+  border-radius: 3px;
+  padding: 0.2rem 0.35rem;
+}
+
+.arkantya .sheet-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  border-bottom: 2px solid var(--ak-border);
+  padding-bottom: 0.25rem;
+}
+
+.arkantya .sheet-tabs .item {
+  padding: 0.35rem 0.65rem;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+  color: var(--ak-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.arkantya .sheet-tabs .item:hover {
+  color: var(--ak-accent);
+}
+
+.arkantya .sheet-tabs .item.active {
+  background: var(--ak-panel);
+  border-color: var(--ak-border);
+  border-bottom-color: transparent;
+  color: var(--ak-accent);
+}
+
+.arkantya .sheet-body-main {
+  flex: 1;
+  overflow: hidden auto;
+  padding: 0.35rem 0;
+}
+
+/* État (jetons / faiblesse) : visible en permanence, sous les onglets */
+.arkantya .sheet-state-dock {
+  container-type: inline-size;
+  container-name: arkantya-state-dock;
+  flex-shrink: 0;
+  width: 100%;
+  padding-bottom: 0.35rem;
+}
+
+.arkantya .sheet-state-dock .panel {
+  margin-bottom: 0;
+}
+
+.arkantya .sheet-state-dock .state-dock-panel h3 {
+  margin-bottom: 0.35rem;
+}
+
+.arkantya .state-dock-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+}
+
+@container arkantya-state-dock (min-width: 520px) {
+  .arkantya .state-dock-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  }
+}
+
+.arkantya .state-dock-sub {
+  font-weight: 400;
+  font-size: 0.78em;
+  color: var(--ak-muted);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.arkantya .state-dock-hint {
+  font-size: 0.8rem;
+  color: var(--ak-muted);
+  margin: 0 0 0.4rem;
+  line-height: 1.35;
+}
+
+.arkantya .state-dock-faiblesse-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+}
+
+.arkantya .state-dock-faiblesse-row-npc {
+  margin-top: 0.25rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid var(--ak-border);
+}
+
+.arkantya .state-dock-faiblesse-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ak-text);
+}
+
+.arkantya .state-dock-faiblesse-count input {
+  width: 3.5rem;
+  text-align: center;
+  background: var(--ak-bg);
+  border: 1px solid var(--ak-border);
+  color: var(--ak-text);
+  border-radius: 3px;
+  padding: 0.15rem;
+}
+
+/* Onglet Attributs : colonnes selon la largeur de la fiche (container queries) */
+.arkantya .attrs-tab-layout {
+  container-type: inline-size;
+  container-name: arkantya-attrs;
+  width: 100%;
+}
+
+.arkantya .attrs-core-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+}
+
+.arkantya .attrs-core-grid > * {
+  min-width: 0;
+}
+
+.arkantya .attrs-core-grid .attr-block.panel {
+  margin-bottom: 0;
+}
+
+@container arkantya-attrs (min-width: 420px) {
+  .arkantya .attrs-core-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container arkantya-attrs (min-width: 820px) {
+  .arkantya .attrs-core-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.arkantya .attrs-wide-stack {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  grid-template-columns: 1fr;
+}
+
+.arkantya .attrs-wide-stack > .panel {
+  margin-bottom: 0;
+}
+
+@container arkantya-attrs (min-width: 540px) {
+  .arkantya .attrs-wide-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Onglet Talents & spécialités : deux panneaux + grille des champs spécialités */
+.arkantya .talents-tab-layout {
+  container-type: inline-size;
+  container-name: arkantya-talents;
+  width: 100%;
+}
+
+.arkantya .talents-panels-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+}
+
+.arkantya .talents-panels-grid > .panel {
+  margin-bottom: 0;
+}
+
+@container arkantya-talents (min-width: 540px) {
+  .arkantya .talents-panels-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.arkantya .talents-panel {
+  container-type: inline-size;
+  container-name: arkantya-talent-panel;
+  min-width: 0;
+}
+
+.arkantya .specialites-panel {
+  container-type: inline-size;
+  container-name: arkantya-spec-panel;
+  min-width: 0;
+}
+
+@container arkantya-talent-panel (max-width: 400px) {
+  .arkantya .talents-panel .talent-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+  }
+
+  .arkantya .talents-panel .talent-row .btn-icon {
+    align-self: flex-end;
+  }
+}
+
+.arkantya .specialites-fields {
+  display: grid;
+  gap: 0.4rem 0.65rem;
+  grid-template-columns: 1fr;
+}
+
+.arkantya .specialites-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ak-muted);
+}
+
+.arkantya .specialites-fields label input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--ak-bg);
+  border: 1px solid var(--ak-border);
+  color: var(--ak-text);
+  border-radius: 3px;
+  padding: 0.2rem 0.35rem;
+  font-size: 0.9rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+@container arkantya-spec-panel (min-width: 320px) {
+  .arkantya .specialites-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.arkantya .tab {
+  display: none;
+}
+
+.arkantya .tab.active {
+  display: block;
+}
+
+.arkantya .panel {
+  background: var(--ak-panel);
+  border: 1px solid var(--ak-border);
+  border-radius: 4px;
+  padding: 0.5rem 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.arkantya .panel h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--ak-accent);
+  border-bottom: 1px solid var(--ak-border);
+  padding-bottom: 0.25rem;
+}
+
+.arkantya .attr-block {
+  margin-bottom: 0.65rem;
+}
+
+.arkantya .attr-block .attr-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.arkantya .attr-block .attr-head label {
+  flex: 1;
+  font-weight: 700;
+  color: var(--ak-accent);
+}
+
+.arkantya .attr-block input.attr-value {
+  width: 3rem;
+  text-align: center;
+  background: var(--ak-bg);
+  border: 1px solid var(--ak-border);
+  color: var(--ak-text);
+  border-radius: 3px;
+}
+
+.arkantya .comp-row {
+  display: grid;
+  grid-template-columns: 1fr auto 2.5rem auto;
+  gap: 0.35rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.arkantya .comp-row .comp-name {
+  color: var(--ak-muted);
+}
+
+.arkantya .comp-row input.comp-value {
+  width: 2.5rem;
+  text-align: center;
+  background: var(--ak-bg);
+  border: 1px solid var(--ak-border);
+  color: var(--ak-text);
+  border-radius: 3px;
+}
+
+.arkantya .btn-roll {
+  padding: 0.15rem 0.45rem;
+  line-height: 1;
+  font-size: 0.75rem;
+  background: var(--ak-border);
+  border: none;
+  border-radius: 3px;
+  color: var(--ak-text);
+  cursor: pointer;
+}
+
+.arkantya .btn-roll:hover {
+  background: var(--ak-accent);
+  color: var(--ak-bg);
+}
+
+.arkantya .btn-icon {
+  padding: 0.1rem 0.35rem;
+  font-size: 0.8rem;
+  background: transparent;
+  border: 1px solid var(--ak-border);
+  color: var(--ak-muted);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.arkantya .btn-icon:hover {
+  color: var(--ak-fail);
+  border-color: var(--ak-fail);
+}
+
+.arkantya .trackers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.arkantya .tracker label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--ak-muted);
+  margin-bottom: 0.2rem;
+}
+
+.arkantya .tracker .tracker-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.arkantya .tracker input[type="number"] {
+  width: 2.5rem;
+  background: var(--ak-bg);
+  border: 1px solid var(--ak-border);
+  color: var(--ak-text);
+  border-radius: 3px;
+  text-align: center;
+}
+
+.arkantya .prosemirror-editor,
+.arkantya textarea {
+  min-height: 120px;
+  width: 100%;
+  background: var(--ak-bg);
+  border: 1px solid var(--ak-border);
+  color: var(--ak-text);
+  border-radius: 4px;
+  padding: 0.35rem;
+}
+
+.arkantya .talent-row {
+  display: grid;
+  grid-template-columns: 1fr 3rem 1fr auto;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+  align-items: start;
+}
+
+.arkantya .talent-row input[type="text"],
+.arkantya .talent-row input[type="number"] {
+  background: var(--ak-bg);
+  border: 1px solid var(--ak-border);
+  color: var(--ak-text);
+  border-radius: 3px;
+  padding: 0.2rem;
+}
+
+.arkantya .flex-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  margin-top: 0.35rem;
+}
+
+/* Chat : couleurs lisibles clair ET sombre (variables Foundry) */
+.chat-arkantya {
+  color: var(--color-text-primary, #e8e4dc);
+}
+
+.arkantya .chat-arkantya {
+  border-left: 3px solid var(--ak-accent, #c9a227);
+  padding-left: 0.5rem;
+}
+
+.arkantya .chat-arkantya.crit-success {
+  border-left-color: #4a9d6e;
+}
+
+.arkantya .chat-arkantya.crit-fail {
+  border-left-color: #c44c4c;
+}
+
+.arkantya .chat-arkantya .outcome {
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.chat-arkantya .threshold-breakdown {
+  list-style: none;
+  margin: 0.35rem 0 0.15rem;
+  padding: 0;
+  font-size: 0.92em;
+  line-height: 1.5;
+  color: var(--color-text-secondary, rgba(255, 255, 255, 0.82));
+}
+
+.chat-arkantya .threshold-breakdown li {
+  margin: 0.1rem 0;
+}
+
+.chat-arkantya .threshold-sum {
+  margin-top: 0.35rem;
+  font-size: 0.95em;
+  color: var(--color-text-primary, #e8e4dc);
+}
+
+.chat-arkantya .threshold-sum strong {
+  color: var(--color-text-primary, #f5f2eb);
+}
+
+.chat-arkantya .threshold-natural {
+  margin-top: 0.25rem;
+  font-size: 0.88em;
+  color: var(--color-text-secondary, rgba(255, 255, 255, 0.78));
+}

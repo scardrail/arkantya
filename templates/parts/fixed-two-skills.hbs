@@ -1,0 +1,18 @@
+<div class="panel attr-block" data-attr="{{attrKey}}">
+  <div class="attr-head">
+    <label>{{localize (concat "ARKANTYA.ATTR." attrKey)}}</label>
+    <input class="attr-value" type="number" name="system.attributs.{{attrKey}}.value" value="{{attr.value}}" min="6" max="18" data-dtype="Number" />
+  </div>
+  <div class="comp-row">
+    <span class="comp-name">{{localize (concat "ARKANTYA.COMP." skillA)}}</span>
+    <span></span>
+    <input class="comp-value" type="number" name="system.attributs.{{attrKey}}.competences.{{skillA}}" value="{{lookup attr.competences skillA}}" min="0" max="4" data-dtype="Number" />
+    <button type="button" class="btn-roll" data-roll="{{attrKey}}" data-skill="{{skillA}}" title="{{localize "ARKANTYA.SHEET.Roll"}}">🎲</button>
+  </div>
+  <div class="comp-row">
+    <span class="comp-name">{{localize (concat "ARKANTYA.COMP." skillB)}}</span>
+    <span></span>
+    <input class="comp-value" type="number" name="system.attributs.{{attrKey}}.competences.{{skillB}}" value="{{lookup attr.competences skillB}}" min="0" max="4" data-dtype="Number" />
+    <button type="button" class="btn-roll" data-roll="{{attrKey}}" data-skill="{{skillB}}" title="{{localize "ARKANTYA.SHEET.Roll"}}">🎲</button>
+  </div>
+</div>

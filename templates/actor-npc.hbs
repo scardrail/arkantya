@@ -1,0 +1,122 @@
+<form class="arkantya sheet actor" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+    <div class="header-fields" style="grid-template-columns: 1fr;">
+      <label>Nom
+        <input type="text" name="name" value="{{actor.name}}" />
+      </label>
+      <label>Type / rôle
+        <input type="text" name="system.details.type" value="{{system.details.type}}" />
+      </label>
+      <label>Surnom / titre
+        <input type="text" name="system.details.surnom" value="{{system.details.surnom}}" />
+      </label>
+    </div>
+  </header>
+
+  <p class="hint" style="color: var(--ak-muted); font-size: 0.85rem; padding: 0 0.5rem;">{{localize "ARKANTYA.NPC.Subtitle"}}</p>
+
+  <section class="sheet-state-dock" aria-label="{{localize 'ARKANTYA.SHEET.Tabs.state'}}">
+    <div class="panel state-dock-panel state-dock-panel-npc">
+      <h3>{{localize "ARKANTYA.SHEET.Tabs.state"}}</h3>
+      <div class="trackers">
+        <div class="tracker">
+          <label>Blessure</label>
+          <div class="tracker-inputs">
+            <input type="number" name="system.trackers.blessure.value" value="{{system.trackers.blessure.value}}" min="0" max="4" data-dtype="Number" />
+            <span>/ {{system.trackers.blessure.max}}</span>
+          </div>
+        </div>
+        <div class="tracker">
+          <label>Fatigue</label>
+          <div class="tracker-inputs">
+            <input type="number" name="system.trackers.fatigue.value" value="{{system.trackers.fatigue.value}}" min="0" max="4" data-dtype="Number" />
+            <span>/ {{system.trackers.fatigue.max}}</span>
+          </div>
+        </div>
+        <div class="tracker">
+          <label>Surmenage</label>
+          <div class="tracker-inputs">
+            <input type="number" name="system.trackers.surmenage.value" value="{{system.trackers.surmenage.value}}" min="0" max="4" data-dtype="Number" />
+            <span>/ {{system.trackers.surmenage.max}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="state-dock-faiblesse-row state-dock-faiblesse-row-npc">
+        <span>{{localize "ARKANTYA.SHEET.ResistanceFaiblesse"}} : <strong>{{resistanceValue}}</strong></span>
+        <label class="state-dock-faiblesse-count">Faiblesse (tours restants)
+          <input type="number" name="system.faiblesseTours" value="{{system.faiblesseTours}}" min="0" data-dtype="Number" />
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <nav class="sheet-tabs tabs">
+    <a class="item active" data-tab="main">{{localize "ARKANTYA.SHEET.Tabs.main"}}</a>
+    <a class="item" data-tab="attributes">{{localize "ARKANTYA.SHEET.Tabs.attributes"}}</a>
+    {{#if isGM}}
+    <a class="item" data-tab="gm">{{localize "ARKANTYA.SHEET.Tabs.notes"}}</a>
+    {{/if}}
+  </nav>
+
+  <section class="sheet-body-main">
+    <div class="tab active" data-tab="main">
+      <div class="panel">
+        <h3>Description</h3>
+        <textarea name="system.description" rows="10">{{system.description}}</textarea>
+      </div>
+    </div>
+
+    <div class="tab" data-tab="attributes">
+      <div class="attrs-tab-layout">
+      <div class="attrs-core-grid">
+      {{> "systems/arkantya/templates/parts/fixed-two-skills.hbs" attrKey="constitution" skillA="force" skillB="resistance" attr=system.attributs.constitution}}
+      {{> "systems/arkantya/templates/parts/fixed-two-skills.hbs" attrKey="esprit" skillA="intellect" skillB="eloquence" attr=system.attributs.esprit}}
+      {{> "systems/arkantya/templates/parts/fixed-two-skills.hbs" attrKey="dexterite" skillA="agilite" skillB="furtivite" attr=system.attributs.dexterite}}
+      {{> "systems/arkantya/templates/parts/fixed-two-skills.hbs" attrKey="habilete" skillA="perception" skillB="savoirFaire" attr=system.attributs.habilete}}
+      </div>
+
+      <div class="attrs-wide-stack">
+      <div class="panel">
+        <h3>{{localize "ARKANTYA.ATTR.combativite"}}</h3>
+        <input class="attr-value" type="number" name="system.attributs.combativite.value" value="{{system.attributs.combativite.value}}" min="6" max="18" data-dtype="Number" />
+        {{#each system.attributs.combativite.competences as |c|}}
+        <div class="comp-row">
+          <input type="text" name="system.attributs.combativite.competences.{{@index}}.nom" value="{{c.nom}}" placeholder="Compétence" />
+          <span></span>
+          <input class="comp-value" type="number" name="system.attributs.combativite.competences.{{@index}}.value" value="{{c.value}}" min="0" max="4" data-dtype="Number" />
+          <button type="button" class="btn-roll" data-roll="combativite" data-idx="{{@index}}">🎲</button>
+        </div>
+        <input type="hidden" name="system.attributs.combativite.competences.{{@index}}.id" value="{{c.id}}" />
+        {{/each}}
+        <button type="button" data-add-combat>+ {{localize "ARKANTYA.SHEET.AddCompetence"}}</button>
+      </div>
+
+      <div class="panel">
+        <h3>{{localize "ARKANTYA.ATTR.arkanes"}}</h3>
+        <input class="attr-value" type="number" name="system.attributs.arkanes.value" value="{{system.attributs.arkanes.value}}" min="6" max="18" data-dtype="Number" />
+        {{#each system.attributs.arkanes.competences as |c|}}
+        <div class="comp-row">
+          <input type="text" name="system.attributs.arkanes.competences.{{@index}}.nom" value="{{c.nom}}" />
+          <span></span>
+          <input class="comp-value" type="number" name="system.attributs.arkanes.competences.{{@index}}.value" value="{{c.value}}" min="0" max="4" data-dtype="Number" />
+          <button type="button" class="btn-roll" data-roll="arkanes" data-idx="{{@index}}">🎲</button>
+        </div>
+        <input type="hidden" name="system.attributs.arkanes.competences.{{@index}}.id" value="{{c.id}}" />
+        {{/each}}
+        <button type="button" data-add-arkanes>+ {{localize "ARKANTYA.SHEET.AddCompetence"}}</button>
+      </div>
+      </div>
+      </div>
+    </div>
+
+    {{#if isGM}}
+    <div class="tab" data-tab="gm">
+      <div class="panel">
+        <h3>Notes MJ</h3>
+        <textarea name="system.notesMj" rows="12">{{system.notesMj}}</textarea>
+      </div>
+    </div>
+    {{/if}}
+  </section>
+</form>

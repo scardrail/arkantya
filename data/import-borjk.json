@@ -1,0 +1,78 @@
+{
+  "name": "Börjk",
+  "type": "character",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "details": {
+      "prenom": "Börjk",
+      "nom": "Grichnov",
+      "age": "41 ans",
+      "race": "Nain",
+      "genre": "Masculin",
+      "niveau": "Expérimenté",
+      "styleCombat": "Mêlée",
+      "elementArkanique": "Terre",
+      "statutCivil": "",
+      "anneePoste": ""
+    },
+    "attributs": {
+      "constitution": { "value": 10, "competences": { "force": 1, "resistance": 2 } },
+      "esprit": { "value": 8, "competences": { "intellect": 1, "eloquence": 0 } },
+      "dexterite": { "value": 8, "competences": { "agilite": 0, "furtivite": 3 } },
+      "habilete": { "value": 7, "competences": { "perception": 3, "savoirFaire": 0 } },
+      "combativite": {
+        "value": 12,
+        "competences": [
+          { "id": "borjk-c1", "nom": "Contondant", "value": 3 },
+          { "id": "borjk-c2", "nom": "", "value": 0 }
+        ]
+      },
+      "arkanes": {
+        "value": 10,
+        "competences": [
+          { "id": "borjk-a1", "nom": "Roche", "value": 2 },
+          { "id": "borjk-a2", "nom": "", "value": 0 }
+        ]
+      }
+    },
+    "specialites": {
+      "specialite1": "",
+      "ecole1": "",
+      "specialite2": "",
+      "ecole2": "",
+      "specialiteMaitre": "",
+      "ecoleComplementaire": ""
+    },
+    "talents": [
+      {
+        "name": "Pickpocket (Fur)",
+        "value": 3,
+        "description": "Lié à la Furtivité — ajoutez le bonus au jet si la situation s’y prête."
+      },
+      {
+        "name": "Intimidation (Élo)",
+        "value": 2,
+        "description": "Lié à l’Éloquence — ajoutez le bonus au jet si la situation s’y prête."
+      }
+    ],
+    "description": "Börjk est de petite taille, robuste et musclé. Ses cheveux blonds sont réunis en queue de cheval haute et il arbore un bouc taillé et réuni en un brin de perles. Ses yeux sont verts. Tout son corps est recouvert d’une pilosité dense. Börjk ne porte qu’un glaive, préférant évoquer ses armes lourdes. Son imposante armure faite de métal et de cuir lui offre une protection dantesque. On le voit toujours avec un collier d’os et de dents autour du cou.",
+    "histoire": "Börjk est issu d’une longue lignée de fiers bâtisseurs. Il a quitté sa famille jeune, n’éprouvant que peu d’intérêt pour l’architecture après avoir été recruté par le chef d’un groupe de brigands. C’est ainsi que se sont forgées ses habitudes du combat et sa neutralité globale. Il est devenu solitaire depuis, abandonnant ses bandits à leur compte. Il est neutre dans ses actions : il agit par intérêt uniquement ; la compassion lui est étrangère.",
+    "session": {
+      "destin": 3,
+      "or": 17,
+      "inventaire": "- Collier d’Os et de Dents\n- 1 Potion de Soin\n- Bijoux Volés\n- 17 Pièces d’Or",
+      "exemplesCombat": "- Börjk utilise ses Arkanes de terre pour évoquer de lourds marteaux de roche.\n- Börjk prend son élan pour asséner un coup puissant de ses deux marteaux sur l’ennemi.\n- Börjk feinte l’ennemi pour le frapper aux bras, l’obligeant à lâcher ses armes.",
+      "infosSupplementaires": "Börjk considère que, plus que n’importe quelle babiole brillante, son collier a une valeur inestimable : il est persuadé que celui-ci le guide vers la fortune et l’aidera un jour à décrocher le pactole. Ses quatre anciens bandits, logés au cœur des Marais de Lecnäe, le respectaient pour ça."
+    },
+    "trackers": {
+      "blessure": { "value": 0, "max": 4 },
+      "fatigue": { "value": 0, "max": 4 },
+      "surmenage": { "value": 0, "max": 4 }
+    },
+    "faiblesseTours": 0,
+    "notesMj": ""
+  },
+  "prototypeToken": {
+    "name": "Börjk"
+  }
+}

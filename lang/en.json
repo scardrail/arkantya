@@ -1,0 +1,66 @@
+{
+  "ARKANTYA": {
+    "SYSTEM": { "Label": "Arkantya" },
+    "SHEET": {
+      "Tabs": {
+        "identity": "Identity",
+        "attributes": "Attributes & skills",
+        "talents": "Talents & specialties",
+        "description": "Description",
+        "session": "Session",
+        "state": "Condition",
+        "notes": "GM notes",
+        "main": "Sheet"
+      },
+      "Roll": "Roll",
+      "RollDestin": "Roll Destiny (1d6)",
+      "AddCompetence": "Add skill",
+      "Remove": "Remove",
+      "AddTalent": "Add talent",
+      "ResistanceFaiblesse": "Resistance (weakness duration)"
+    },
+    "ATTR": {
+      "constitution": "Constitution",
+      "esprit": "Mind",
+      "dexterite": "Dexterity",
+      "habilete": "Finesse",
+      "combativite": "Combat",
+      "arkanes": "Arkanes"
+    },
+    "COMP": {
+      "force": "Might",
+      "resistance": "Endurance",
+      "intellect": "Intellect",
+      "eloquence": "Eloquence",
+      "agilite": "Agility",
+      "furtivite": "Stealth",
+      "perception": "Perception",
+      "savoirFaire": "Craft"
+    },
+    "ROLL": {
+      "Title": "Arkantya test",
+      "Modifier": "Situational bonus / penalty",
+      "TalentBonus": "Talent bonus (if applicable)",
+      "Roll": "Roll 1d20",
+      "Success": "Success",
+      "Failure": "Failure",
+      "CritSuccess": "Critical success (1)",
+      "CritFail": "Critical failure (20)",
+      "Threshold": "Threshold",
+      "Natural": "Natural roll",
+      "BreakdownAttr": "Attribute ({name}): {value}",
+      "BreakdownSkill": "Skill ({name}): {value}",
+      "BreakdownTalent": "Talent bonus: {value}",
+      "BreakdownSituational": "Situation (bonus / penalty): {value}",
+      "BreakdownTotal": "Threshold = {a} + {b} + {c} + ({d})",
+      "BreakdownNaturalVs": "d20 roll: {natural} — success if ≤ {total} (except 1 = crit success, 20 = crit fail)"
+    },
+    "NPC": { "Subtitle": "Non-player character" }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "npc": "NPC"
+    }
+  }
+}

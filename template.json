@@ -1,0 +1,133 @@
+{
+  "Actor": {
+    "types": ["character", "npc"],
+    "templates": {
+      "arkantyaCharacter": {
+        "details": {
+          "prenom": "",
+          "nom": "",
+          "age": "",
+          "race": "",
+          "genre": "",
+          "niveau": "",
+          "styleCombat": "",
+          "elementArkanique": "",
+          "statutCivil": "",
+          "anneePoste": ""
+        },
+        "attributs": {
+          "constitution": {
+            "value": 10,
+            "competences": { "force": 0, "resistance": 0 }
+          },
+          "esprit": {
+            "value": 10,
+            "competences": { "intellect": 0, "eloquence": 0 }
+          },
+          "dexterite": {
+            "value": 10,
+            "competences": { "agilite": 0, "furtivite": 0 }
+          },
+          "habilete": {
+            "value": 10,
+            "competences": { "perception": 0, "savoirFaire": 0 }
+          },
+          "combativite": {
+            "value": 10,
+            "competences": [
+              { "id": "c1", "nom": "", "value": 0 },
+              { "id": "c2", "nom": "", "value": 0 }
+            ]
+          },
+          "arkanes": {
+            "value": 10,
+            "competences": [
+              { "id": "a1", "nom": "", "value": 0 },
+              { "id": "a2", "nom": "", "value": 0 }
+            ]
+          }
+        },
+        "specialites": {
+          "specialite1": "",
+          "ecole1": "",
+          "specialite2": "",
+          "ecole2": "",
+          "specialiteMaitre": "",
+          "ecoleComplementaire": ""
+        },
+        "talents": [],
+        "description": "",
+        "histoire": "",
+        "session": {
+          "destin": 3,
+          "or": 0,
+          "inventaire": "",
+          "exemplesCombat": "",
+          "infosSupplementaires": ""
+        },
+        "trackers": {
+          "blessure": { "value": 0, "max": 4 },
+          "fatigue": { "value": 0, "max": 4 },
+          "surmenage": { "value": 0, "max": 4 }
+        },
+        "faiblesseTours": 0,
+        "notesMj": ""
+      },
+      "arkantyaNpc": {
+        "details": {
+          "surnom": "",
+          "type": ""
+        },
+        "attributs": {
+          "constitution": {
+            "value": 10,
+            "competences": { "force": 0, "resistance": 0 }
+          },
+          "esprit": {
+            "value": 10,
+            "competences": { "intellect": 0, "eloquence": 0 }
+          },
+          "dexterite": {
+            "value": 10,
+            "competences": { "agilite": 0, "furtivite": 0 }
+          },
+          "habilete": {
+            "value": 10,
+            "competences": { "perception": 0, "savoirFaire": 0 }
+          },
+          "combativite": {
+            "value": 10,
+            "competences": [
+              { "id": "c1", "nom": "", "value": 0 },
+              { "id": "c2", "nom": "", "value": 0 }
+            ]
+          },
+          "arkanes": {
+            "value": 10,
+            "competences": [
+              { "id": "a1", "nom": "", "value": 0 },
+              { "id": "a2", "nom": "", "value": 0 }
+            ]
+          }
+        },
+        "description": "",
+        "notesMj": "",
+        "session": {
+          "destin": 3
+        },
+        "trackers": {
+          "blessure": { "value": 0, "max": 4 },
+          "fatigue": { "value": 0, "max": 4 },
+          "surmenage": { "value": 0, "max": 4 }
+        },
+        "faiblesseTours": 0
+      }
+    },
+    "character": {
+      "templates": ["arkantyaCharacter"]
+    },
+    "npc": {
+      "templates": ["arkantyaNpc"]
+    }
+  }
+}

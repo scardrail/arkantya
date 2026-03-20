@@ -1,0 +1,70 @@
+{
+  "ARKANTYA": {
+    "SYSTEM": {
+      "Label": "Arkantya"
+    },
+    "SHEET": {
+      "Tabs": {
+        "identity": "Identité",
+        "attributes": "Attributs & compétences",
+        "talents": "Talents & spécialités",
+        "description": "Description",
+        "session": "Séance",
+        "state": "État",
+        "notes": "Notes MJ",
+        "main": "Fiche"
+      },
+      "Roll": "Jet",
+      "RollDestin": "Lancer le Destin (1d6)",
+      "AddCompetence": "Ajouter une compétence",
+      "Remove": "Retirer",
+      "AddTalent": "Ajouter un talent",
+      "ResistanceFaiblesse": "Résistance (durée faiblesse)"
+    },
+    "ATTR": {
+      "constitution": "Constitution",
+      "esprit": "Esprit",
+      "dexterite": "Dextérité",
+      "habilete": "Habileté",
+      "combativite": "Combativité",
+      "arkanes": "Arkanes"
+    },
+    "COMP": {
+      "force": "Force",
+      "resistance": "Résistance",
+      "intellect": "Intellect",
+      "eloquence": "Éloquence",
+      "agilite": "Agilité",
+      "furtivite": "Furtivité",
+      "perception": "Perception",
+      "savoirFaire": "Savoir-faire"
+    },
+    "ROLL": {
+      "Title": "Test Arkantya",
+      "Modifier": "Bonus / malus de situation",
+      "TalentBonus": "Bonus de talent (si applicable)",
+      "Roll": "Lancer 1d20",
+      "Success": "Réussite",
+      "Failure": "Échec",
+      "CritSuccess": "Réussite critique (1)",
+      "CritFail": "Échec critique (20)",
+      "Threshold": "Seuil",
+      "Natural": "Dé naturel",
+      "BreakdownAttr": "Attribut ({name}) : {value}",
+      "BreakdownSkill": "Compétence ({name}) : {value}",
+      "BreakdownTalent": "Bonus talent : {value}",
+      "BreakdownSituational": "Situation (bonus / malus) : {value}",
+      "BreakdownTotal": "Seuil = {a} + {b} + {c} + ({d})",
+      "BreakdownNaturalVs": "Dé sur 20 : {natural} — réussite si ≤ {total} (hors 1 = réussite critique, 20 = échec critique)"
+    },
+    "NPC": {
+      "Subtitle": "Personnage non-joueur"
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Personnage",
+      "npc": "PNJ"
+    }
+  }
+}

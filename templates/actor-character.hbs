@@ -1,0 +1,228 @@
+<form class="arkantya sheet actor" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+    <div class="header-fields">
+      <label>{{localize "ARKANTYA.SHEET.Tabs.identity"}}
+        <input type="text" name="name" value="{{actor.name}}" placeholder="Nom" />
+      </label>
+      <label>Prénom
+        <input type="text" name="system.details.prenom" value="{{system.details.prenom}}" />
+      </label>
+      <label>Nom de famille
+        <input type="text" name="system.details.nom" value="{{system.details.nom}}" />
+      </label>
+      <label>Âge
+        <input type="text" name="system.details.age" value="{{system.details.age}}" />
+      </label>
+      <label>Race
+        <input type="text" name="system.details.race" value="{{system.details.race}}" />
+      </label>
+      <label>Genre
+        <input type="text" name="system.details.genre" value="{{system.details.genre}}" />
+      </label>
+      <label>Niveau
+        <input type="text" name="system.details.niveau" value="{{system.details.niveau}}" />
+      </label>
+      <label>Style de combat
+        <input type="text" name="system.details.styleCombat" value="{{system.details.styleCombat}}" />
+      </label>
+      <label>Élément arkanique
+        <input type="text" name="system.details.elementArkanique" value="{{system.details.elementArkanique}}" />
+      </label>
+      <label>Statut civil
+        <input type="text" name="system.details.statutCivil" value="{{system.details.statutCivil}}" />
+      </label>
+      <label>Année / poste
+        <input type="text" name="system.details.anneePoste" value="{{system.details.anneePoste}}" />
+      </label>
+    </div>
+  </header>
+
+  <section class="sheet-state-dock" aria-label="{{localize 'ARKANTYA.SHEET.Tabs.state'}}">
+    <div class="state-dock-grid">
+      <div class="panel state-dock-panel">
+        <h3>Jetons <span class="state-dock-sub">(max 4 chacun)</span></h3>
+        <div class="trackers">
+          <div class="tracker">
+            <label>Blessure</label>
+            <div class="tracker-inputs">
+              <input type="number" name="system.trackers.blessure.value" value="{{system.trackers.blessure.value}}" min="0" max="4" data-dtype="Number" />
+              <span>/ {{system.trackers.blessure.max}}</span>
+            </div>
+          </div>
+          <div class="tracker">
+            <label>Fatigue</label>
+            <div class="tracker-inputs">
+              <input type="number" name="system.trackers.fatigue.value" value="{{system.trackers.fatigue.value}}" min="0" max="4" data-dtype="Number" />
+              <span>/ {{system.trackers.fatigue.max}}</span>
+            </div>
+          </div>
+          <div class="tracker">
+            <label>Surmenage</label>
+            <div class="tracker-inputs">
+              <input type="number" name="system.trackers.surmenage.value" value="{{system.trackers.surmenage.value}}" min="0" max="4" data-dtype="Number" />
+              <span>/ {{system.trackers.surmenage.max}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel state-dock-panel">
+        <h3>Faiblesse</h3>
+        <p class="state-dock-hint">À 4 jetons identiques : faiblesse pendant autant d’unités de temps que la <strong>Résistance</strong> (en combat = tours de table ; hors combat ≈ minutes).</p>
+        <div class="state-dock-faiblesse-row">
+          <span>{{localize "ARKANTYA.SHEET.ResistanceFaiblesse"}} : <strong>{{resistanceValue}}</strong></span>
+          <label class="state-dock-faiblesse-count">Tours / minutes restants
+            <input type="number" name="system.faiblesseTours" value="{{system.faiblesseTours}}" min="0" data-dtype="Number" />
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item active" data-tab="identity" data-group="primary">{{localize "ARKANTYA.SHEET.Tabs.identity"}}</a>
+    <a class="item" data-tab="attributes" data-group="primary">{{localize "ARKANTYA.SHEET.Tabs.attributes"}}</a>
+    <a class="item" data-tab="talents" data-group="primary">{{localize "ARKANTYA.SHEET.Tabs.talents"}}</a>
+    <a class="item" data-tab="description" data-group="primary">{{localize "ARKANTYA.SHEET.Tabs.description"}}</a>
+    <a class="item" data-tab="session" data-group="primary">{{localize "ARKANTYA.SHEET.Tabs.session"}}</a>
+    {{#if isGM}}
+    <a class="item" data-tab="gm" data-group="primary">{{localize "ARKANTYA.SHEET.Tabs.notes"}}</a>
+    {{/if}}
+  </nav>
+
+  <section class="sheet-body-main">
+    <div class="tab active" data-group="primary" data-tab="identity">
+      <div class="panel">
+        <h3>Résumé</h3>
+        <p class="hint" style="color: var(--ak-muted); font-size: 0.85rem;">
+          Attributs 6–18, compétences 0–4. Test : 1d20 ≤ attribut + compétence (+ talent si adapté). 1 = réussite critique, 20 = échec critique.
+        </p>
+        <p><strong>Destin (séance)</strong> : <input type="number" name="system.session.destin" value="{{system.session.destin}}" min="1" max="6" data-dtype="Number" style="width:3rem;" /> (1d6 en début de partie — initiative)</p>
+        <div class="flex-actions">
+          <button type="button" class="roll-destin">{{localize "ARKANTYA.SHEET.RollDestin"}}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="attributes">
+      <div class="attrs-tab-layout">
+      <div class="attrs-core-grid">
+      {{> "systems/arkantya/templates/parts/fixed-two-skills.hbs" attrKey="constitution" skillA="force" skillB="resistance" attr=system.attributs.constitution}}
+      {{> "systems/arkantya/templates/parts/fixed-two-skills.hbs" attrKey="esprit" skillA="intellect" skillB="eloquence" attr=system.attributs.esprit}}
+      {{> "systems/arkantya/templates/parts/fixed-two-skills.hbs" attrKey="dexterite" skillA="agilite" skillB="furtivite" attr=system.attributs.dexterite}}
+      {{> "systems/arkantya/templates/parts/fixed-two-skills.hbs" attrKey="habilete" skillA="perception" skillB="savoirFaire" attr=system.attributs.habilete}}
+      </div>
+
+      <div class="attrs-wide-stack">
+      <div class="panel">
+        <h3>{{localize "ARKANTYA.ATTR.combativite"}}</h3>
+        <div class="attr-head">
+          <input class="attr-value" type="number" name="system.attributs.combativite.value" value="{{system.attributs.combativite.value}}" min="6" max="18" data-dtype="Number" />
+        </div>
+        {{#each system.attributs.combativite.competences as |c|}}
+        <div class="comp-row" data-index="{{@index}}">
+          <input type="text" name="system.attributs.combativite.competences.{{@index}}.nom" value="{{c.nom}}" placeholder="Compétence" />
+          <span class="comp-name"></span>
+          <input class="comp-value" type="number" name="system.attributs.combativite.competences.{{@index}}.value" value="{{c.value}}" min="0" max="4" data-dtype="Number" />
+          <button type="button" class="btn-roll" data-roll="combativite" data-idx="{{@index}}" title="{{localize "ARKANTYA.SHEET.Roll"}}">🎲</button>
+        </div>
+        <input type="hidden" name="system.attributs.combativite.competences.{{@index}}.id" value="{{c.id}}" />
+        {{/each}}
+        <div class="flex-actions">
+          <button type="button" data-add-combat>+ {{localize "ARKANTYA.SHEET.AddCompetence"}}</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>{{localize "ARKANTYA.ATTR.arkanes"}}</h3>
+        <div class="attr-head">
+          <input class="attr-value" type="number" name="system.attributs.arkanes.value" value="{{system.attributs.arkanes.value}}" min="6" max="18" data-dtype="Number" />
+        </div>
+        {{#each system.attributs.arkanes.competences as |c|}}
+        <div class="comp-row">
+          <input type="text" name="system.attributs.arkanes.competences.{{@index}}.nom" value="{{c.nom}}" placeholder="Arkanes" />
+          <span class="comp-name"></span>
+          <input class="comp-value" type="number" name="system.attributs.arkanes.competences.{{@index}}.value" value="{{c.value}}" min="0" max="4" data-dtype="Number" />
+          <button type="button" class="btn-roll" data-roll="arkanes" data-idx="{{@index}}">🎲</button>
+        </div>
+        <input type="hidden" name="system.attributs.arkanes.competences.{{@index}}.id" value="{{c.id}}" />
+        {{/each}}
+        <div class="flex-actions">
+          <button type="button" data-add-arkanes>+ {{localize "ARKANTYA.SHEET.AddCompetence"}}</button>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="talents">
+      <div class="talents-tab-layout">
+      <div class="talents-panels-grid">
+      <div class="panel talents-panel">
+        <h3>Talents</h3>
+        {{#each system.talents as |t|}}
+        <div class="talent-row">
+          <input type="text" name="system.talents.{{@index}}.name" value="{{t.name}}" placeholder="Nom du talent" />
+          <input type="number" name="system.talents.{{@index}}.value" value="{{t.value}}" min="0" max="6" data-dtype="Number" title="Bonus" />
+          <input type="text" name="system.talents.{{@index}}.description" value="{{t.description}}" placeholder="Description / lien compétence" />
+          <button type="button" class="btn-icon" data-remove-talent="{{@index}}">✕</button>
+        </div>
+        {{else}}
+        <p class="hint" style="color: var(--ak-muted);">Aucun talent — ajoutez-en.</p>
+        {{/each}}
+        <div class="flex-actions">
+          <button type="button" data-add-talent>{{localize "ARKANTYA.SHEET.AddTalent"}}</button>
+        </div>
+      </div>
+      <div class="panel specialites-panel">
+        <h3>Spécialités (combat / écoles)</h3>
+        <div class="specialites-fields">
+        <label>Spécialité 1 <input type="text" name="system.specialites.specialite1" value="{{system.specialites.specialite1}}" /></label>
+        <label>École 1 <input type="text" name="system.specialites.ecole1" value="{{system.specialites.ecole1}}" /></label>
+        <label>Spécialité 2 <input type="text" name="system.specialites.specialite2" value="{{system.specialites.specialite2}}" /></label>
+        <label>École 2 <input type="text" name="system.specialites.ecole2" value="{{system.specialites.ecole2}}" /></label>
+        <label>Spécialité maître <input type="text" name="system.specialites.specialiteMaitre" value="{{system.specialites.specialiteMaitre}}" /></label>
+        <label>École complémentaire <input type="text" name="system.specialites.ecoleComplementaire" value="{{system.specialites.ecoleComplementaire}}" /></label>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="description">
+      <div class="panel">
+        <h3>Description du personnage</h3>
+        <textarea name="system.description" rows="8">{{system.description}}</textarea>
+      </div>
+      <div class="panel">
+        <h3>Histoire & liens</h3>
+        <textarea name="system.histoire" rows="8">{{system.histoire}}</textarea>
+      </div>
+    </div>
+
+    <div class="tab" data-group="primary" data-tab="session">
+      <div class="panel">
+        <h3>Inventaire & richesse</h3>
+        <label>Pièces d'or <input type="number" name="system.session.or" value="{{system.session.or}}" min="0" data-dtype="Number" style="width:5rem;" /></label>
+        <textarea name="system.session.inventaire" rows="6" placeholder="Une ligne par objet">{{system.session.inventaire}}</textarea>
+      </div>
+      <div class="panel">
+        <h3>Exemples d'actions en combat</h3>
+        <textarea name="system.session.exemplesCombat" rows="5">{{system.session.exemplesCombat}}</textarea>
+      </div>
+      <div class="panel">
+        <h3>Informations supplémentaires</h3>
+        <textarea name="system.session.infosSupplementaires" rows="6">{{system.session.infosSupplementaires}}</textarea>
+      </div>
+    </div>
+
+    {{#if isGM}}
+    <div class="tab" data-group="primary" data-tab="gm">
+      <div class="panel">
+        <h3>Notes MJ</h3>
+        <textarea name="system.notesMj" rows="12">{{system.notesMj}}</textarea>
+      </div>
+    </div>
+    {{/if}}
+  </section>
+</form>
