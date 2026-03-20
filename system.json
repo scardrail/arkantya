@@ -34,7 +34,8 @@
   "primaryTokenAttribute": "system.trackers.blessure",
   "secondaryTokenAttribute": "system.trackers.fatigue",
   "socket": false,
-  "manifest": "",
-  "download": "",
+  "manifest": "https://raw.githubusercontent.com/scardrail/arkantya/main/system.json",
+  "download": "https://github.com/scardrail/arkantya/archive/refs/heads/main.zip",
+  
   "protected": false
 }
