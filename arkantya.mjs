@@ -63,8 +63,14 @@ async function rollArkantyaTest(actor, { attrKey, skillKey, compIndex, situation
   }
 
   const outcomeText = game.i18n.localize(`ARKANTYA.ROLL.${outcomeKey}`);
-  const cls =
-    outcome === "critSuccess" ? "crit-success" : outcome === "critFail" ? "crit-fail" : "";
+  const outcomeClass =
+    outcome === "critSuccess"
+      ? "outcome-crit-success"
+      : outcome === "critFail"
+        ? "outcome-crit-fail"
+        : outcome === "success"
+          ? "outcome-success"
+          : "outcome-fail";
 
   const i18nFmt = (key, data) => game.i18n.format(`ARKANTYA.ROLL.${key}`, data);
   const breakdown = `
@@ -83,10 +89,10 @@ async function rollArkantyaTest(actor, { attrKey, skillKey, compIndex, situation
   <div class="threshold-natural">${i18nFmt("BreakdownNaturalVs", { natural, total: threshold })}</div>`;
 
   const detail = `
-<div class="arkantya chat-arkantya ${cls}">
+<div class="arkantya chat-arkantya ${outcomeClass}">
   <div><strong>${label}</strong></div>
   ${breakdown}
-  <div class="outcome">${outcomeText}</div>
+  <div class="outcome" role="status">${outcomeText}</div>
 </div>`;
 
   await roll.toMessage({

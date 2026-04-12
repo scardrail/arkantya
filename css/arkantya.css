@@ -557,22 +557,89 @@ form.arkantya.sheet.actor .tracker-inputs span {
   color: var(--color-text-primary, #e8e4dc);
 }
 
+.arkantya.chat-arkantya,
 .arkantya .chat-arkantya {
   border-left: 3px solid var(--ak-accent, #c9a227);
   padding-left: 0.5rem;
 }
 
-.arkantya .chat-arkantya.crit-success {
-  border-left-color: #4a9d6e;
+/* Bordure : réussite / échec (y compris critiques) */
+.chat-arkantya.outcome-success,
+.arkantya.chat-arkantya.outcome-success {
+  border-left-color: #3d8f5f;
 }
 
-.arkantya .chat-arkantya.crit-fail {
-  border-left-color: #c44c4c;
+.chat-arkantya.outcome-crit-success,
+.arkantya.chat-arkantya.outcome-crit-success {
+  border-left-color: #2d7a4a;
 }
 
-.arkantya .chat-arkantya .outcome {
+.chat-arkantya.outcome-fail,
+.arkantya.chat-arkantya.outcome-fail {
+  border-left-color: #c45a5a;
+}
+
+.chat-arkantya.outcome-crit-fail,
+.arkantya.chat-arkantya.outcome-crit-fail {
+  border-left-color: #a83838;
+}
+
+/* Libellé final réussite / échec : vert ou rouge, lisible clair / sombre */
+.chat-arkantya .outcome {
   font-weight: 700;
-  margin-top: 0.25rem;
+  margin-top: 0.35rem;
+  font-size: 1.05em;
+  letter-spacing: 0.02em;
+}
+
+.chat-arkantya.outcome-success .outcome,
+.chat-arkantya.outcome-crit-success .outcome {
+  color: #1f7a45;
+}
+
+.chat-arkantya.outcome-fail .outcome,
+.chat-arkantya.outcome-crit-fail .outcome {
+  color: #b83232;
+}
+
+/* Thème sombre Foundry : verts/rouges un peu plus vifs */
+.theme-dark .chat-arkantya.outcome-success .outcome,
+.theme-dark .chat-arkantya.outcome-crit-success .outcome,
+body.theme-dark .chat-arkantya.outcome-success .outcome,
+body.theme-dark .chat-arkantya.outcome-crit-success .outcome {
+  color: #5ecf8f;
+}
+
+.theme-dark .chat-arkantya.outcome-fail .outcome,
+.theme-dark .chat-arkantya.outcome-crit-fail .outcome,
+body.theme-dark .chat-arkantya.outcome-fail .outcome,
+body.theme-dark .chat-arkantya.outcome-crit-fail .outcome {
+  color: #ff7a7a;
+}
+
+/* Ligne « dé sur 20 » : léger tint du même côté pour renforcer la lecture */
+.chat-arkantya.outcome-success .threshold-natural,
+.chat-arkantya.outcome-crit-success .threshold-natural {
+  color: #2a6b44;
+}
+
+.chat-arkantya.outcome-fail .threshold-natural,
+.chat-arkantya.outcome-crit-fail .threshold-natural {
+  color: #9a3a3a;
+}
+
+.theme-dark .chat-arkantya.outcome-success .threshold-natural,
+.theme-dark .chat-arkantya.outcome-crit-success .threshold-natural,
+body.theme-dark .chat-arkantya.outcome-success .threshold-natural,
+body.theme-dark .chat-arkantya.outcome-crit-success .threshold-natural {
+  color: rgba(120, 220, 160, 0.92);
+}
+
+.theme-dark .chat-arkantya.outcome-fail .threshold-natural,
+.theme-dark .chat-arkantya.outcome-crit-fail .threshold-natural,
+body.theme-dark .chat-arkantya.outcome-fail .threshold-natural,
+body.theme-dark .chat-arkantya.outcome-crit-fail .threshold-natural {
+  color: rgba(255, 150, 150, 0.9);
 }
 
 .chat-arkantya .threshold-breakdown {
