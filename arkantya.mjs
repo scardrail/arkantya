@@ -141,11 +141,11 @@ async function promptModifiersAndRoll(actor, baseOpts) {
 }
 
 /**
- * Clone combativité / arkanes `competences` en tableau mutable (Foundry peut exposer autre chose qu'un Array).
+ * Clone une liste en tableau mutable. Foundry peut exposer un Array comme objet { "0": …, "1": … }.
  * @param {unknown} raw
  * @returns {object[]}
  */
-function cloneCompetenceList(raw) {
+function cloneDocumentArray(raw) {
   const dup = foundry.utils.duplicate(raw);
   if (Array.isArray(dup)) return dup;
   if (dup && typeof dup === "object") {
@@ -204,7 +204,8 @@ class ArkantyaCharacterSheet extends ArkantyaActorSheetBase {
 
   async getData(options = {}) {
     const context = await super.getData(options);
-    context.system = this.actor.system;
+    context.system = foundry.utils.duplicate(this.actor.system);
+    context.system.talents = cloneDocumentArray(this.actor.system.talents);
     context.isGM = game.user.isGM;
     context.resistanceValue = Number(
       this.actor.system?.attributs?.constitution?.competences?.resistance ?? 0
@@ -254,26 +255,28 @@ class ArkantyaCharacterSheet extends ArkantyaActorSheetBase {
   }
 
   async _onAddCombat() {
-    const list = cloneCompetenceList(this.actor.system.attributs.combativite.competences);
+    const list = cloneDocumentArray(this.actor.system.attributs.combativite.competences);
     list.push({ id: foundry.utils.randomID(), nom: "", value: 0 });
     await this.actor.update({ "system.attributs.combativite.competences": list });
   }
 
   async _onAddArkanes() {
-    const list = cloneCompetenceList(this.actor.system.attributs.arkanes.competences);
+    const list = cloneDocumentArray(this.actor.system.attributs.arkanes.competences);
     list.push({ id: foundry.utils.randomID(), nom: "", value: 0 });
     await this.actor.update({ "system.attributs.arkanes.competences": list });
   }
 
-  async _onAddTalent() {
-    const talents = foundry.utils.duplicate(this.actor.system.talents ?? []);
+  async _onAddTalent(event) {
+    event.preventDefault();
+    const talents = cloneDocumentArray(this.actor.system.talents);
     talents.push({ name: "", value: 0, description: "" });
     await this.actor.update({ "system.talents": talents });
   }
 
   async _onRemoveTalent(event) {
+    event.preventDefault();
     const idx = Number(event.currentTarget.dataset.removeTalent);
-    const talents = foundry.utils.duplicate(this.actor.system.talents ?? []);
+    const talents = cloneDocumentArray(this.actor.system.talents);
     talents.splice(idx, 1);
     await this.actor.update({ "system.talents": talents });
   }
@@ -326,13 +329,13 @@ class ArkantyaNpcSheet extends ArkantyaActorSheetBase {
   }
 
   async _onAddCombat() {
-    const list = cloneCompetenceList(this.actor.system.attributs.combativite.competences);
+    const list = cloneDocumentArray(this.actor.system.attributs.combativite.competences);
     list.push({ id: foundry.utils.randomID(), nom: "", value: 0 });
     await this.actor.update({ "system.attributs.combativite.competences": list });
   }
 
   async _onAddArkanes() {
-    const list = cloneCompetenceList(this.actor.system.attributs.arkanes.competences);
+    const list = cloneDocumentArray(this.actor.system.attributs.arkanes.competences);
     list.push({ id: foundry.utils.randomID(), nom: "", value: 0 });
     await this.actor.update({ "system.attributs.arkanes.competences": list });
   }
