@@ -11,7 +11,8 @@ Jeu de rôle **Arkantya** (règles issues du scénario d’initiation *La Plume 
 
 - Six **attributs** (6–18) et **compétences** (0–4) : Constitution, Esprit, Dextérité, Habileté, Combativité, Arkanes (les deux derniers avec compétences nommées librement).
 - **Test** : 1d20 ≤ attribut + compétence (+ bonus de talent / situation saisis dans la fenêtre de jet). **1** = réussite critique, **20** = échec critique.
-- **Destin** : champ 1–6 + bouton « Lancer le Destin (1d6) » ; l’**initiative** de combat utilise `@system.session.destin` (comme en table : ordre lié au Destin de séance).
+- **Destin** : champ 1–6 + bouton « Lancer le Destin (1d6) » en début de séance.
+- **Initiative** : dans une rencontre de combat Foundry, le bouton de jet d’initiative utilise **`CONFIG.Combat.initiative.formula`**, ici **`1d20`** (un dé par combattant pour l’ordre de tour).
 - **Jetons** Blessure / Fatigue / Surmenage (0–4) avec barres sur le token (Blessure et Fatigue).
 - Onglet **Séance** (inventaire, or, exemples de combat, infos supp.) calqué sur la fiche de séance type *Börjk*.
 

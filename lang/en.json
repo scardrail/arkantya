@@ -14,6 +14,7 @@
       },
       "Roll": "Roll",
       "RollDestin": "Roll Destiny (1d6)",
+      "DestinBlurb": "(1d6 at session start. Combat initiative: 1d20 from the Foundry encounter.)",
       "AddCompetence": "Add skill",
       "Remove": "Remove",
       "AddTalent": "Add talent",

@@ -16,6 +16,7 @@
       },
       "Roll": "Jet",
       "RollDestin": "Lancer le Destin (1d6)",
+      "DestinBlurb": "(1d6 en début de partie. Initiative en combat : 1d20 via la rencontre Foundry.)",
       "AddCompetence": "Ajouter une compétence",
       "Remove": "Retirer",
       "AddTalent": "Ajouter un talent",

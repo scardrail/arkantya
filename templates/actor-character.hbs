@@ -97,7 +97,7 @@
         <p class="hint" style="color: var(--ak-muted); font-size: 0.85rem;">
           Attributs 6–18, compétences 0–4. Test : 1d20 ≤ attribut + compétence (+ talent si adapté). 1 = réussite critique, 20 = échec critique.
         </p>
-        <p><strong>Destin (séance)</strong> : <input type="number" name="system.session.destin" value="{{system.session.destin}}" min="1" max="6" data-dtype="Number" style="width:3rem;" /> (1d6 en début de partie — initiative)</p>
+        <p><strong>Destin (séance)</strong> : <input type="number" name="system.session.destin" value="{{system.session.destin}}" min="1" max="6" data-dtype="Number" style="width:3rem;" /> {{localize "ARKANTYA.SHEET.DestinBlurb"}}</p>
         <div class="flex-actions">
           <button type="button" class="roll-destin">{{localize "ARKANTYA.SHEET.RollDestin"}}</button>
         </div>

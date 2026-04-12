@@ -373,8 +373,10 @@ Hooks.once("init", async () => {
     makeDefault: true
   });
 
+  // Initiative : voir API CONFIG.Combat.initiative (formula + decimals).
+  // « Roll initiative » dans la rencontre de combat évalue cette formule comme un Roll par combattant.
   CONFIG.Combat.initiative = {
-    formula: "@system.session.destin",
+    formula: "1d20",
     decimals: 0
   };
 });
