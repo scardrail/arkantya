@@ -2,7 +2,7 @@
   "id": "arkantya",
   "title": "Arkantya",
   "description": "Jeu de rôle Arkantya (Ezechiel Din Cyr / Wankil) pour Foundry VTT — attributs 6–18, compétences 0–4, test en 1d20 ≤ seuil, Destin 1d6, jetons Blessure / Fatigue / Surmenage.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
     {
       "name": "Conversion Foundry"
